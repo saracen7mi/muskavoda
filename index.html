@@ -2,53 +2,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0">
-  <title>Dobro dosli u Kladanj</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dobro došli u Kladanj</title>
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <style>
     body { margin: 0; overflow: hidden; }
-    a-scene { width: 90%; height: 80vh; }
+    a-scene { width: 100%; height: 100vh; }
   </style>
 </head>
 <body>
 
-<audio id="audio-bosnian"><source src="" type="audio/mpeg"></audio>
-<audio id="audio-english"><source src="" type="audio/mpeg"></audio>
-<audio id="audio-german"><source src="" type="audio/mpeg"></audio>
-<audio id="audio-italian"><source src="" type="audio/mpeg"></audio>
-<audio id="audio-turkish"><source src="" type="audio/mpeg"></audio>
-
-<a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
-  <a-plane color="#008000" height="3.5" width="6.5" position="0 0.5 -5" opacity="0.9"></a-plane>
-
+<a-scene
+  embedded
+  arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;"
+  vr-mode-ui="enabled: false"
+  renderer="logarithmicDepthBuffer: true;"
+  gesture-detector
+>
+  <!-- 3D model s animacijom -->
   <a-assets>
-    <a-asset-item id="model" src="https://cdn.jsdelivr.net/gh/saracen7mi/muskavoda@main/muskavodamodel_c.glb"></a-asset-item>
+    <a-asset-item id="model-glb" src="https://cdn.jsdelivr.net/gh/saracen7mi/muskavoda@main/muskavodamodel_c.glb"></a-asset-item>
   </a-assets>
 
-  <a-entity gltf-model="#model"
-            animation-mixer
-            position="0 -0.8 -4"
-            scale="1 1 1"
-            rotation="0 0 0">
+  <a-entity
+    gltf-model="#model-glb"
+    animation-mixer
+    position="0 -0.8 -4"
+    scale="1 1 1"
+    rotation="0 180 0">
   </a-entity>
 
-  <a-camera position="0 1.6 0">
-    <a-cursor color="#FF0000" radius="0.05"></a-cursor>
-  </a-camera>
-</a-scene>
+  <!-- Tekstualni natpisi -->
+  <a-text
+    value="DOBRODOŠLI NA MUŠKU VODU KLADANJ"
+    position="0 2.5 -4"
+    align="center"
+    color="white"
+    width="6">
+  </a-text>
 
-<script>
-  window.addEventListener('load', () => {
-    document.body.addEventListener('click', () => {
-      let audio = document.getElementById('audio-bosnian');
-      if (audio && audio.paused) {
-        audio.play().catch(e => console.warn(e));
-      }
-    }, { once: true });
-  });
-</script>
+  <a-text
+    value="OSJEĆAJTE SE MIRNO I SIGURNO!"
+    position="0 2.2 -4"
+    align="center"
+    color="white"
+    width="6">
+  </a-text>
+
+  <!-- Kamera i kursor -->
+  <a-camera position="0 1.6 0">
+    <a-cursor color="#FF0000" radius="0.04"></a-cursor>
+  </a-camera>
+
+  <!-- Svjetlo -->
+  <a-light type="ambient" color="#999"></a-light>
+  <a-light type="directional" intensity="1" position="0 3 -2"></a-light>
+
+</a-scene>
 
 </body>
 </html>
