@@ -1,5 +1,5 @@
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -102,6 +102,26 @@
 
 </body>
 </html>
+ -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-assets>
+      <a-asset-item id="model" src="https://cdn.jsdelivr.net/gh/saracen7mi/muskavoda@main/muskavodacompressed.glb"></a-asset-item>
+    </a-assets>
+    <a-entity gltf-model="#model" position="0 0 -3" scale="1 1 1"></a-entity>
+    <a-camera position="0 1.6 0"></a-camera>
+  </a-scene>
+</body>
+</html>
+
 
 
 
